@@ -1,0 +1,774 @@
+/* ============================================================
+   RESET & BASE
+============================================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --violet: #7c3aed;
+  --violet-light: #a855f7;
+  --pink: #ec4899;
+  --pink-soft: #f9a8d4;
+  --rose: #fce7f3;
+  --gold: #c9961e;
+  --gold-light: #e8c870;
+  --white: #ffffff;
+  --dark: #3b0764;          /* morado oscuro — solo para texto/acento */
+  --text-main: #2d0a5a;
+  --text-soft: #6b3fa0;
+
+  --grad-hero: linear-gradient(
+    150deg,
+    #f3e8ff 0%,
+    #fce7f3 45%,
+    #ffe4f0 75%,
+    #fff0f8 100%
+  );
+  --grad-soft: linear-gradient(135deg, #ede9fe, #fce7f3);
+  --grad-card: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.9),
+    rgba(253, 244, 255, 0.8)
+  );
+
+  --shadow-glow: 0 0 40px rgba(236, 72, 153, 0.18);
+  --shadow-card: 0 8px 32px rgba(124, 58, 237, 0.12);
+  --shadow-btn: 0 4px 20px rgba(201, 150, 30, 0.35);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: #fdf4ff;
+  color: var(--text-main);
+  overflow-x: hidden;
+}
+
+/* ============================================================
+   CANVAS PARTICLES (behind everything)
+============================================================ */
+#particle-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.25;
+}
+
+/* ============================================================
+   HERO SECTION
+============================================================ */
+#hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem 1.5rem;
+  overflow: hidden;
+  background: var(--grad-hero);
+}
+
+/* Animated gradient overlay */
+#hero::before {
+  content: "";
+  position: absolute;
+  inset: -50%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0%,
+    rgba(201, 150, 30, 0.06) 25%,
+    transparent 50%,
+    rgba(236, 72, 153, 0.08) 75%,
+    transparent 100%
+  );
+  animation: spin 18s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Glowing orbs */
+#hero::after {
+  content: "";
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(236, 72, 153, 0.14) 0%,
+    transparent 70%
+  );
+  top: -80px;
+  right: -120px;
+  animation: pulse-orb 6s ease-in-out infinite alternate;
+}
+
+@keyframes pulse-orb {
+  from {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  to {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+}
+
+/* Gold decorative line */
+.gold-line {
+  display: block;
+  width: 80px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 0 auto 1.5rem;
+  animation: grow-line 1.2s ease forwards;
+}
+@keyframes grow-line {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    width: 80px;
+    opacity: 1;
+  }
+}
+
+.hero-eyebrow {
+  font-family: "Poppins", sans-serif;
+  font-size: clamp(0.7rem, 2vw, 0.85rem);
+  font-weight: 500;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0;
+  animation: fade-up 0.8s 0.3s ease forwards;
+}
+
+.hero-title {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(2.2rem, 6vw, 5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  background: linear-gradient(
+    135deg,
+    var(--dark) 0%,
+    #7c3aed 50%,
+    #ec4899 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0.5rem 0 1rem;
+  opacity: 0;
+  animation: fade-up 0.9s 0.5s ease forwards;
+}
+
+.hero-subtitle {
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  font-size: clamp(1.1rem, 3vw, 1.7rem);
+  color: var(--pink);
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: fade-up 0.9s 0.75s ease forwards;
+}
+
+.hero-message {
+  font-size: clamp(0.9rem, 2.2vw, 1.05rem);
+  font-weight: 400;
+  color: var(--text-soft);
+  line-height: 1.8;
+  max-width: 560px;
+  margin: 0 auto 2.5rem;
+  opacity: 0;
+  animation: fade-up 0.9s 1s ease forwards;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* CTA Button */
+.btn-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1rem 2.4rem;
+  border: none;
+  border-radius: 50px;
+  background: linear-gradient(135deg, var(--gold), #f0c040, var(--gold));
+  background-size: 200% 200%;
+  color: var(--dark);
+  font-family: "Poppins", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: var(--shadow-btn);
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
+  opacity: 0;
+  animation:
+    fade-up 0.9s 1.25s ease forwards,
+    shimmer-btn 3s 2s linear infinite;
+}
+.btn-cta:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 8px 30px rgba(212, 175, 55, 0.6);
+}
+@keyframes shimmer-btn {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* scroll indicator eliminado */
+
+/* ============================================================
+   SHARED SECTION STYLES
+============================================================ */
+section {
+  position: relative;
+  z-index: 1;
+}
+
+.section-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 6rem 1.5rem;
+}
+
+.section-label {
+  display: block;
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+}
+
+.section-title {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, var(--dark), var(--pink));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Scroll-reveal base */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================================
+   SECTION 2 – Mensaje Especial
+============================================================ */
+#mensaje {
+  background: linear-gradient(180deg, #fdf4ff 0%, #fce7f3 50%, #fdf4ff 100%);
+  text-align: center;
+}
+
+.mensaje-quote {
+  position: relative;
+  max-width: 640px;
+  margin: 2rem auto 0;
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  font-size: clamp(1.05rem, 2.8vw, 1.3rem);
+  line-height: 1.9;
+  color: var(--text-main);
+}
+
+.mensaje-quote::before {
+  content: '"';
+  font-size: 6rem;
+  line-height: 0;
+  position: absolute;
+  top: 3rem;
+  left: -2.5rem;
+  color: var(--gold);
+  opacity: 0.3;
+  font-family: "Playfair Display", serif;
+}
+
+/* Pink separator */
+.sep {
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--violet), var(--pink));
+  border-radius: 2px;
+  margin: 2rem auto 0;
+}
+
+/* Nota especial destacada */
+.nota-especial {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.2rem;
+  max-width: 600px;
+  margin: 2.5rem auto 0;
+  background: linear-gradient(
+    135deg,
+    rgba(212, 175, 55, 0.15),
+    rgba(236, 72, 153, 0.1)
+  );
+  border: 1.5px solid rgba(212, 175, 55, 0.45);
+  border-radius: 18px;
+  padding: 1.6rem 2rem;
+  text-align: left;
+  box-shadow:
+    0 0 30px rgba(212, 175, 55, 0.12),
+    inset 0 0 20px rgba(212, 175, 55, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.nota-especial::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), var(--pink), var(--gold));
+}
+
+.nota-icon {
+  font-size: 2rem;
+  flex-shrink: 0;
+  line-height: 1;
+  margin-top: 0.1rem;
+}
+
+.nota-texto {
+  font-size: clamp(0.95rem, 2.5vw, 1.05rem);
+  line-height: 1.8;
+  color: var(--text-main);
+  font-weight: 400;
+}
+
+.nota-texto strong {
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.nota-texto em {
+  color: var(--pink);
+  font-style: italic;
+}
+
+
+/* ============================================================
+   SECTION 3 – Admiración (Cards)
+============================================================ */
+#admiracion {
+  background: linear-gradient(180deg, #fff0f8 0%, #f5f0ff 100%);
+  text-align: center;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.adm-card {
+  background: var(--white);
+  border: 1px solid rgba(124, 58, 237, 0.12);
+  border-radius: 20px;
+  padding: 2.2rem 1.8rem;
+  box-shadow: 0 4px 20px rgba(124, 58, 237, 0.08);
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+  cursor: default;
+}
+
+.adm-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 36px rgba(236, 72, 153, 0.18);
+  border-color: rgba(236, 72, 153, 0.25);
+}
+
+.card-icon {
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+  display: block;
+  filter: drop-shadow(0 0 8px rgba(236, 72, 153, 0.3));
+}
+
+.card-title {
+  font-family: "Playfair Display", serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 0.6rem;
+}
+
+.card-desc {
+  font-size: 0.88rem;
+  font-weight: 400;
+  color: var(--text-soft);
+  line-height: 1.6;
+}
+
+/* Gold accent line on card hover */
+.adm-card::after {
+  content: "";
+  display: block;
+  height: 2px;
+  background: linear-gradient(90deg, var(--violet), var(--gold), var(--pink));
+  border-radius: 2px;
+  margin-top: 1.5rem;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.adm-card:hover::after {
+  opacity: 1;
+}
+
+/* ============================================================
+   SECTION 4 – Dedicatoria Typewriter
+============================================================ */
+#dedicatoria {
+  background: linear-gradient(135deg, #fdf4ff 0%, #fce7f3 50%, #f5f0ff 100%);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+#dedicatoria::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(201, 150, 30, 0.06) 0%,
+    transparent 70%
+  );
+}
+
+.typewriter-text {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(1.3rem, 3.5vw, 2rem);
+  font-style: italic;
+  font-weight: 700;
+  color: var(--dark);
+  line-height: 1.7;
+  min-height: 3.5em;
+  position: relative;
+  z-index: 1;
+  margin-top: 2rem;
+}
+
+/* Blinking cursor */
+.typewriter-text .cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.1em;
+  background: var(--gold);
+  margin-left: 3px;
+  vertical-align: middle;
+  animation: blink 0.75s step-end infinite;
+}
+@keyframes blink {
+  from,
+  to {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* ============================================================
+   SECTION 5 – Interacción Especial
+============================================================ */
+#interaccion {
+  background: linear-gradient(180deg, #fff0f8 0%, #f5f0ff 100%);
+  text-align: center;
+}
+
+.btn-message {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1.1rem 2.8rem;
+  border: 2px solid transparent;
+  border-radius: 50px;
+  background:
+    linear-gradient(#ffffff, #ffffff) padding-box,
+    linear-gradient(135deg, var(--violet), var(--pink), var(--gold)) border-box;
+  color: var(--dark);
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
+  margin-top: 2.5rem;
+}
+.btn-message:hover {
+  transform: scale(1.06);
+  box-shadow: 0 0 30px rgba(168, 85, 247, 0.4);
+}
+
+/* Pop-up message modal */
+.love-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: rgba(10, 5, 20, 0.85);
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+.love-modal.open {
+  opacity: 1;
+  pointer-events: all;
+}
+.modal-card {
+  position: relative;
+  background: linear-gradient(135deg, #2d1052, #4a1259);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  border-radius: 24px;
+  padding: 3rem 2.5rem;
+  max-width: 480px;
+  width: 100%;
+  text-align: center;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.6),
+    var(--shadow-glow);
+  transform: scale(0.8);
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.love-modal.open .modal-card {
+  transform: scale(1);
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1.2rem;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.modal-close:hover {
+  color: var(--gold);
+}
+
+.modal-emoji {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.modal-text {
+  font-family: "Playfair Display", serif;
+  font-style: italic;
+  font-size: clamp(1.1rem, 3vw, 1.4rem);
+  color: var(--white);
+  line-height: 1.7;
+}
+
+.modal-sig {
+  margin-top: 1.5rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* Floating hearts canvas (modal) */
+#heart-canvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10000;
+}
+
+/* ============================================================
+   FOOTER
+============================================================ */
+footer {
+  position: relative;
+  z-index: 1;
+  background: #fdf4ff;
+  text-align: center;
+  padding: 2.5rem 1.5rem;
+  border-top: 1px solid rgba(124, 58, 237, 0.1);
+}
+
+.footer-text {
+  font-size: 0.85rem;
+  color: var(--text-soft);
+  letter-spacing: 0.05em;
+}
+.footer-text span {
+  color: var(--pink);
+}
+
+/* ============================================================
+   RESPONSIVE — iPhone XR (414px) y móvil general
+============================================================ */
+@media (max-width: 430px) {
+  /* Secciones más compactas en móvil */
+  .section-container {
+    padding: 4rem 1.25rem;
+  }
+
+  /* Hero ajustado */
+  #hero {
+    padding: 2.5rem 1.25rem 3rem;
+    min-height: 100svh;       /* usa svh para que no corte el navbar del browser */
+  }
+
+  .hero-content {
+    width: 100%;
+  }
+
+  /* Título hero más cómodo */
+  .hero-title {
+    font-size: clamp(2rem, 10vw, 2.8rem);
+    line-height: 1.15;
+  }
+
+  .hero-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .hero-message {
+    font-size: 0.95rem;
+  }
+
+  /* Botón CTA táctil */
+  .btn-cta {
+    padding: 0.95rem 2rem;
+    font-size: 0.9rem;
+    min-height: 44px;
+  }
+
+  /* Cards en columna única */
+  .cards-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .adm-card {
+    padding: 1.8rem 1.4rem;
+  }
+
+  /* Quitar comilla decorativa que se sale */
+  .mensaje-quote::before {
+    display: none;
+  }
+
+  .mensaje-quote {
+    margin-top: 1.5rem;
+  }
+
+  /* Nota especial en móvil */
+  .nota-especial {
+    flex-direction: column;
+    gap: 0.8rem;
+    padding: 1.4rem 1.2rem;
+  }
+
+  /* Botón mensaje táctil */
+  .btn-message {
+    padding: 1rem 2rem;
+    font-size: 0.95rem;
+    min-height: 44px;
+    width: 100%;
+    max-width: 320px;
+    justify-content: center;
+  }
+
+  /* Typewriter text */
+  .typewriter-text {
+    font-size: clamp(1.1rem, 5vw, 1.4rem);
+  }
+
+  /* Modal compacto */
+  .modal-card {
+    padding: 2.2rem 1.5rem;
+    border-radius: 20px;
+  }
+
+  .modal-text {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .mensaje-quote::before {
+    display: none;
+  }
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+}

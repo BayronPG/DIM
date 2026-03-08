@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Feliz Día Internacional de la Mujer · Ayleen</title>
+    <meta
+      name="description"
+      content="Una página especial dedicada a Ayleen en el Día Internacional de la Mujer."
+    />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Estilos externos -->
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- ======================================================
+     BACKGROUND PARTICLE CANVAS
+====================================================== -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- ======================================================
+     FLOATING HEARTS CANVAS (active on button click)
+====================================================== -->
+    <canvas id="heart-canvas"></canvas>
+
+    <!-- ======================================================
+     SECTION 1 – HERO
+====================================================== -->
+    <section id="hero" aria-label="Bienvenida">
+      <div class="hero-content">
+        <span class="gold-line"></span>
+        <p class="hero-eyebrow">8 de marzo · Día Internacional de la Mujer</p>
+        <h1 class="hero-title">Feliz Día <br />de la Mujer Flaca</h1>
+        <h2 class="hero-subtitle">
+          Esta página es para ti, <em>Ayleen</em> 🌸
+        </h2>
+        <p class="hero-message">
+          No soy muy bueno expresando cosas así, pero hoy quise hacer algo
+          diferente porque te lo mereces.
+        </p>
+        <!-- Scroll to mensaje section -->
+        <a href="#mensaje" class="btn-cta" id="cta-btn">
+          💫 Preciona Aqui 
+        </a>
+      </div>
+
+    </section>
+
+    <!-- ======================================================
+     SECTION 2 – MENSAJE ESPECIAL
+====================================================== -->
+    <section id="mensaje" aria-label="Mensaje especial">
+      <div class="section-container reveal">
+        <span class="section-label">✨ Mensaje especial</span>
+        <h2 class="section-title">Palabras del corazón</h2>
+
+        <blockquote class="mensaje-quote">
+          Hay personas que entran a tu vida y sin querer lo cambian todo.
+          Tú eres una de esas personas. Desde que te conocí, algo cambió
+          en mí y no lo puedo explicar bien, pero sé que es algo bueno.
+          Hoy, en tu día, quiero que sepas que te valoro muchísimo.
+        </blockquote>
+
+        <span class="sep"></span>
+
+        <!-- NOTA ESPECIAL 3 SEMANAS -->
+        <div class="nota-especial reveal">
+          <span class="nota-icon">📅</span>
+          <p class="nota-texto">
+            Hace apenas <strong>3 semanas</strong> te conoci y la verdad han sido
+            las <em>mejores 3 semanas</em> que he tenido en mucho tiempo.
+            No sé cómo lo haces, pero gracias. <strong>Te quiero mucho.</strong>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================
+     SECTION 3 – ADMIRACIÓN (Cards)
+====================================================== -->
+    <section id="admiracion" aria-label="Cualidades admirables">
+      <div class="section-container">
+        <span class="section-label reveal">🌸 Lo que me inspiras</span>
+        <h2 class="section-title reveal">Todo lo que eres</h2>
+
+        <div class="cards-grid">
+          <!-- Card 1 -->
+          <div class="adm-card reveal" style="transition-delay: 0.1s">
+            <span class="card-icon">⚡</span>
+            <h3 class="card-title">Tu fuerza inspira</h3>
+            <p class="card-desc">
+              Me gusta cómo enfrentas los obstáculos, siempre sacas algo bueno de ellos
+              y sigues adelante con valentía
+            </p>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="adm-card reveal" style="transition-delay: 0.2s">
+            <span class="card-icon">🌟</span>
+            <h3 class="card-title">Tu sonrisa ilumina</h3>
+            <p class="card-desc">
+              Hay una luz en tu sonrisa que cambia el ambiente de cualquier
+              lugar donde estés.
+            </p>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="adm-card reveal" style="transition-delay: 0.3s">
+            <span class="card-icon">🌺</span>
+            <h3 class="card-title">Tu presencia hace todo mejor</h3>
+            <p class="card-desc">
+              Con solo estar ahí, todo se vuelve más cálido, más bonito y más
+              significativo.
+            </p>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="adm-card reveal" style="transition-delay: 0.4s">
+            <span class="card-icon">💖</span>
+            <h3 class="card-title">Tu bondad es única</h3>
+            <p class="card-desc">
+              Tienes una forma muy bonita de dar sin esperar nada a cambio,
+              y eso te hace extraordinaria.
+            </p>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="adm-card reveal" style="transition-delay: 0.5s">
+            <span class="card-icon">🦋</span>
+            <h3 class="card-title">Tu libertad es hermosa</h3>
+            <p class="card-desc">
+             Ser tú misma en un mundo que quiere que todos sean 
+             iguales es algo que admiro mucho de ti.
+            </p>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="adm-card reveal" style="transition-delay: 0.6s">
+            <span class="card-icon">✨</span>
+            <h3 class="card-title">Tu magia es real</h3>
+            <p class="card-desc">
+              Hay algo en ti que no se puede explicar pero que todos podemos
+              sentir: tu magia propia.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================
+     SECTION 4 – DEDICATORIA TYPEWRITER
+====================================================== -->
+    <section id="dedicatoria" aria-label="Dedicatoria">
+      <div class="section-container" style="text-align: center">
+        <span class="section-label reveal">💌 Para Ayleen</span>
+        <h2 class="section-title reveal">Lo que quiero decirte</h2>
+
+        <!-- Text is filled by the typewriter JS -->
+        <p class="typewriter-text reveal" id="typewriter-el">
+          <span id="tw-output"></span><span class="cursor"></span>
+        </p>
+
+        <span class="sep reveal" style="margin-top: 2.5rem"></span>
+      </div>
+    </section>
+
+    <!-- ======================================================
+     SECTION 5 – INTERACCIÓN ESPECIAL
+====================================================== -->
+    <section id="interaccion" aria-label="Mensaje especial interactivo">
+      <div class="section-container" style="text-align: center">
+        <span class="section-label reveal">💝 Solo para ti</span>
+        <h2 class="section-title reveal">Un regalo especial</h2>
+        <p
+          class="reveal"
+          style="
+            color: rgba(255, 255, 255, 0.65);
+            font-size: 0.95rem;
+            max-width: 420px;
+            margin: 0 auto;
+          "
+        >
+          Haz clic en el botón y déjame decirte algo desde el fondo de mi
+          corazón.
+        </p>
+
+        <button class="btn-message reveal" id="love-btn" aria-haspopup="dialog">
+          💌 Un mensaje para ti
+        </button>
+      </div>
+    </section>
+
+    <!-- ======================================================
+     MODAL – MENSAJE DE AMOR
+====================================================== -->
+    <div
+      class="love-modal"
+      id="love-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Mensaje de amor"
+    >
+      <div class="modal-card">
+        <button class="modal-close" id="modal-close-btn" aria-label="Cerrar">
+          ✕
+        </button>
+        <span class="modal-emoji">💖</span>
+        <p class="modal-text">
+          "Ayleen, desde que llegaste todo es mejor.<br/>Te quiero mucho."
+        </p>
+        <p class="modal-sig">Con todo mi cariño · 8 · III · 2026</p>
+      </div>
+    </div>
+
+    <!-- ======================================================
+     FOOTER
+====================================================== -->
+    <footer>
+      <p class="footer-text">
+        Hecho con <span>♥</span> para Ayleen &mdash; 8 de Marzo, 2026
+      </p>
+    </footer>
+
+    <!-- JavaScript externo -->
+    <script src="main.js"></script>
+  </body>
+</html>
